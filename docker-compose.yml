@@ -1,28 +1,35 @@
-version: "2"
-
+version: '2'
 services:
   db:
     image: postgres:13
-    restart: always
+    user: root
     environment:
-      POSTGRES_PASSWORD: odoo
-      POSTGRES_USER: odoo
-      POSTGRES_DB: postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - POSTGRES_DB=postgres
+    restart: always             # run as a service
     volumes:
-      - ./postgresql:/var/lib/postgresql/data
+        - ./postgresql:/var/lib/postgresql/data
 
   odoo14:
     image: odoo:14
+    user: root
     depends_on:
       - db
     ports:
-      - "${ODOO_PORT}:8069"
-      - "${CHAT_PORT}:8072"
+      - "11014:8069"
+      - "21014:8072" # live chat
+    tty: true
+    command: --
+#    command: odoo scaffold /mnt/extra-addons/custom_module
     environment:
-      HOST: db
-      USER: odoo
-      PASSWORD: odoo
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoo
     volumes:
+      #- /etc/timezone:/etc/timezone:ro
+      #- /etc/localtime:/etc/localtime:ro
+      #- ./entrypoint.sh:/entrypoint.sh
       - ./addons:/mnt/extra-addons
       - ./etc:/etc/odoo
-    restart: always
+    restart: always             # run as a service

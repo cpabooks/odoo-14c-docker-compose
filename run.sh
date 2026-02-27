@@ -1,3 +1,5 @@
+okay give me a complete run.sh file freshly by altering whatever you recommended
+
 #!/bin/bash
 DESTINATION=$1
 PORT=$2
@@ -35,10 +37,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   sed -i '' 's/20014/'$CHAT'/g' $DESTINATION/docker-compose.yml
 else
   # Linux sed syntax
-  #sed -i 's/10014/'$PORT'/g' $DESTINATION/docker-compose.yml
-  #sed -i 's/20014/'$CHAT'/g' $DESTINATION/docker-compose.yml
-  sed -i "s/\"10014:8069\"/\"$PORT:8069\"/g" $DESTINATION/docker-compose.yml
-  sed -i "s/\"20014:8072\"/\"$CHAT:8072\"/g" $DESTINATION/docker-compose.yml
+  sed -i 's/10014/'$PORT'/g' $DESTINATION/docker-compose.yml
+  sed -i 's/20014/'$CHAT'/g' $DESTINATION/docker-compose.yml
 fi
 
 # Set file and directory permissions after installation
@@ -54,4 +54,4 @@ else
   docker-compose -f $DESTINATION/docker-compose.yml up -d
 fi
 
-echo "Odoo started at http://localhost:$PORT | Master Password: minhng.info | Live chat port: $CHAT"
+echo "Odoo started at http://localhost:$PORT | Master Password: CnvvV46UGZb2=N | Live chat port: $CHAT"
