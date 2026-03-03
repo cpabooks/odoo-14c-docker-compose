@@ -24,7 +24,7 @@ fi
 cp /etc/odoo/logrotate /etc/logrotate.d/odoo
 
 # Start cron daemon (required for logrotate)
-cron
+#cron
 
 DB_ARGS=()
 function check_config() {
