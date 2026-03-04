@@ -7,15 +7,15 @@ Installing Odoo 14 with one command.
 Install [docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/) yourself, then run:
 
 ``` bash
-curl -s https://raw.githubusercontent.com/cpabooks/odoo-14e-docker-compose/master/run.sh | bash -s odoo-one 10014 20014
+curl -s https://raw.githubusercontent.com/minhng92/odoo-14-docker-compose/master/run.sh | bash -s odoo-one 10014 20014
 ```
 
-to set up first Odoo instance @ `localhost:10014` (default master password: `CnvvV46UGZb2=N`)
+to set up first Odoo instance @ `localhost:10014` (default master password: `minhng.info`)
 
 and
 
 ``` bash
-curl -s https://raw.githubusercontent.com/cpabooks/odoo-14e-docker-compose/master/run.sh | bash -s odoo-two 11014 21014
+curl -s https://raw.githubusercontent.com/minhng92/odoo-14-docker-compose/master/run.sh | bash -s odoo-two 11014 21014
 ```
 
 to set up another Odoo instance @ `localhost:11014` (default master password: `minhng.info`)
@@ -56,7 +56,7 @@ docker-compose up -d
 **If you get the permission issue**, change the folder permission to make sure that the container is able to access the directory:
 
 ``` sh
-$ git clone https://github.com/cpabooks/odoo-14-docker-compose
+$ git clone https://github.com/minhng92/odoo-14-docker-compose
 $ sudo chmod -R 777 addons
 $ sudo chmod -R 777 etc
 $ mkdir -p postgresql
