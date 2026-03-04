@@ -54,4 +54,5 @@ else
   echo "Error: Neither 'docker compose' nor 'docker-compose' found."
   exit 1
 fi
-echo "Odoo started at http://localhost:$PORT | Master Password: CnvvV46UGZb2=N | Live chat port: $CHAT"
+ETH0_IP=$(ip addr show eth0 | grep 'inet ' | head -1 | awk '{print $2}' | cut -d'/' -f1)
+echo "Odoo started at http://$ETH0_IP:$PORT | Master Password: CnvvV46UGZb2=N | Live chat port: $CHAT"
