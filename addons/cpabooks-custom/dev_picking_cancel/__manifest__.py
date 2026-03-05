@@ -8,7 +8,7 @@
 #
 ##############################################################################
 {
-    'name': 'xxx_(scrap) All in one Cancel Sale,Purchase,Picking', 
+    'name': 'All in one Cancel Sale,Purchase,Picking',
     'version': '14.0.1.0',
     'author': 'Eagle ERP',
     'sequence': 1,

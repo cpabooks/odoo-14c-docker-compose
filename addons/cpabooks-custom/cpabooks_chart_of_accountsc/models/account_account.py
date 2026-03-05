@@ -426,309 +426,309 @@ class Account(models.Model):
                 for line in get_code:
                     raise ValidationError(_("Same Identity Code Found in : %s", line.name))
 
-    # def action_create_far_rules(self):
-    #     asset = self.env['account.asset'].search([])
-    #     print([i.name for i in asset])
-    #     expense_id = self.env['account.account'].search([
-    #         ('name', 'ilike', 'Depreciation Costs'),
-    #         ('company_id', '=', self.env.company.id)
-    #     ], limit=1)
-    #     print(expense_id)
-    #     print(expense_id.name)
-    #
-    #     journal_id = self.env['account.journal'].search([
-    #         ('name', 'ilike', 'Miscellaneous Operations'),
-    #     ], limit=1)
-    #
-    #     # FAA - Leasehold Improvement
-    #     leasehold = self.env['account.account'].search([
-    #         ('name', 'ilike', 'FAA - Leasehold Improvement'),
-    #         ('user_type_id.name', 'in', ('Fixed Assets', 'Current Assets'))
-    #     ], limit=1)
-    #     if leasehold:
-    #         leasehold.create_asset = 'draft'
-    #
-    #         depreciation_account_id = self.env['account.account'].search([
-    #             ('name', 'ilike', 'Acc. Depn. - Leasehold Improvement')
-    #         ], limit=1)
-    #         asset_model = self.env['account.asset'].search([
-    #             ('name', 'ilike', 'Leasehold 10 years')
-    #         ], limit=1)
-    #         if asset_model:
-    #             asset_model.write({
-    #                 'asset_type': 'purchase',
-    #                 'display_account_asset_id': True,
-    #                 'account_depreciation_expense_id': expense_id.id,
-    #                 'state': 'model',
-    #                 'account_asset_id': leasehold.id,
-    #                 'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
-    #             })
-    #         else:
-    #             asset_model = self.env['account.asset'].create({
-    #                 'name': 'Leasehold 10 years',
-    #                 'method_number': 120,
-    #                 'method_period': '1',
-    #                 'prorata': True,
-    #                 'account_asset_id': leasehold.id,
-    #                 'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
-    #                 'account_depreciation_expense_id': expense_id.id,
-    #                 'journal_id': journal_id.id,
-    #                 'asset_type': 'purchase',
-    #                 'state': 'model',
-    #                 'display_account_asset_id': True,
-    #             })
-    #         leasehold.asset_model = asset_model.id
-    #
-    #     # FAA - Furniture & Fixtures
-    #     furniture_fixtures = self.env['account.account'].search([
-    #         ('name', 'ilike', 'FAA - Furniture & Fixtures'),
-    #         ('user_type_id.name', 'in', ('Fixed Assets', 'Current Assets'))
-    #     ], limit=1)
-    #     if furniture_fixtures:
-    #         furniture_fixtures.create_asset = 'draft'
-    #
-    #         depreciation_account_id = self.env['account.account'].search([
-    #             ('name', 'ilike', 'Acc. Depn. - Furniture & Fixtures')
-    #         ], limit=1)
-    #         asset_model = self.env['account.asset'].search([
-    #             ('name', 'ilike', 'Furniture & Fustures 5 Years')
-    #         ], limit=1)
-    #         if asset_model:
-    #             asset_model.write({
-    #                 'asset_type': 'purchase',
-    #                 'display_account_asset_id': True,
-    #                 'account_depreciation_expense_id': expense_id.id,
-    #                 'state': 'model',
-    #                 'account_asset_id': furniture_fixtures.id,
-    #                 'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
-    #             })
-    #         else:
-    #             asset_model = self.env['account.asset'].create({
-    #                 'name': 'Furniture & Fustures 5 Years',
-    #                 'method_number': 60,
-    #                 'method_period': '1',
-    #                 'prorata': True,
-    #                 'account_asset_id': furniture_fixtures.id,
-    #                 'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
-    #                 'account_depreciation_expense_id': expense_id.id,
-    #                 'journal_id': journal_id.id,
-    #                 'asset_type': 'purchase',
-    #                 'state': 'model',
-    #                 'display_account_asset_id': True,
-    #             })
-    #         furniture_fixtures.asset_model = asset_model.id
-    #
-    #     # FAA - Computer Hardware & Software
-    #     computer_hardware = self.env['account.account'].search([
-    #         ('name', 'ilike', 'FAA - Computer Hardware & Software'),
-    #         ('user_type_id.name', 'in', ('Fixed Assets', 'Current Assets'))
-    #     ], limit=1)
-    #     if computer_hardware:
-    #         computer_hardware.create_asset = 'draft'
-    #
-    #         depreciation_account_id = self.env['account.account'].search([
-    #             ('name', 'ilike', 'Acc. Depn. - Furniture & Fixtures')
-    #         ], limit=1)
-    #         asset_model = self.env['account.asset'].search([
-    #             ('name', 'ilike', 'Computer Hardware & Fustures 5 Years')
-    #         ], limit=1)
-    #         if asset_model:
-    #             asset_model.write({
-    #                 'asset_type': 'purchase',
-    #                 'display_account_asset_id': True,
-    #                 'account_depreciation_expense_id': expense_id.id,
-    #                 'state': 'model',
-    #                 'account_asset_id': computer_hardware.id,
-    #                 'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
-    #
-    #             })
-    #         else:
-    #             asset_model = self.env['account.asset'].create({
-    #                 'name': 'Computer Hardware & Fustures 5 Years',
-    #                 'method_number': 60,
-    #                 'method_period': '1',
-    #                 'prorata': True,
-    #                 'account_asset_id': computer_hardware.id,
-    #                 'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
-    #                 'account_depreciation_expense_id': expense_id.id,
-    #                 'journal_id': journal_id.id,
-    #                 'asset_type': 'purchase',
-    #                 'state': 'model',
-    #                 'display_account_asset_id': True,
-    #             })
-    #         computer_hardware.asset_model = asset_model.id
-    #
-    #     # FAA - Motor Vehicle
-    #     motor = self.env['account.account'].search([
-    #         ('name', 'ilike', 'FAA - Motor Vehicle'),
-    #         ('user_type_id.name', 'in', ('Fixed Assets', 'Current Assets'))
-    #     ], limit=1)
-    #     if motor:
-    #         motor.create_asset = 'draft'
-    #
-    #         depreciation_account_id = self.env['account.account'].search([
-    #             ('name', 'ilike', 'Acc. Depn. - Motor Vehicle')
-    #         ], limit=1)
-    #         asset_model = self.env['account.asset'].search([
-    #             ('name', 'ilike', 'Motor 10 years')
-    #         ], limit=1)
-    #         if asset_model:
-    #             asset_model.write({
-    #                 'asset_type': 'purchase',
-    #                 'display_account_asset_id': True,
-    #                 'account_depreciation_expense_id': expense_id.id,
-    #                 'state': 'model',
-    #                 'account_asset_id': motor.id,
-    #                 'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
-    #             })
-    #         else:
-    #             asset_model = self.env['account.asset'].create({
-    #                 'name': 'Motor 10 years',
-    #                 'method_number': 120,
-    #                 'method_period': '1',
-    #                 'prorata': True,
-    #                 'account_asset_id': motor.id,
-    #                 'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
-    #                 'account_depreciation_expense_id': expense_id.id,
-    #                 'journal_id': journal_id.id,
-    #                 'asset_type': 'purchase',
-    #                 'state': 'model',
-    #                 'display_account_asset_id': True,
-    #             })
-    #         motor.asset_model = asset_model.id
-    #
-    #     # FAA - Equipment & Machineries
-    #     equipment = self.env['account.account'].search([
-    #         ('name', 'ilike', 'FAA - Equipment & Machineries'),
-    #         ('user_type_id.name', 'in', ('Fixed Assets', 'Current Assets'))
-    #     ], limit=1)
-    #     if equipment:
-    #         equipment.create_asset = 'draft'
-    #
-    #         depreciation_account_id = self.env['account.account'].search([
-    #             ('name', 'ilike', 'Acc. Depn. - Equipment & Machineries')
-    #         ], limit=1)
-    #         asset_model = self.env['account.asset'].search([
-    #             ('name', 'ilike', 'Equipment & Fustures 5 Years')
-    #         ], limit=1)
-    #         if asset_model:
-    #             asset_model.write({
-    #                 'asset_type': 'purchase',
-    #                 'display_account_asset_id': True,
-    #                 'account_depreciation_expense_id': expense_id.id,
-    #                 'state': 'model',
-    #                 'account_asset_id': equipment.id,
-    #                 'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
-    #             })
-    #         else:
-    #             asset_model = self.env['account.asset'].create({
-    #                 'name': 'Equipment & Fustures 5 Years',
-    #                 'method_number': 60,
-    #                 'method_period': '1',
-    #                 'prorata': True,
-    #                 'account_asset_id': equipment.id,
-    #                 'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
-    #                 'account_depreciation_expense_id': expense_id.id,
-    #                 'journal_id': journal_id.id,
-    #                 'asset_type': 'purchase',
-    #                 'state': 'model',
-    #                 'display_account_asset_id': True,
-    #             })
-    #         equipment.asset_model = asset_model.id
-    #
-    #     # FAA - Tools & Office Equipment
-    #     tools = self.env['account.account'].search([
-    #         ('name', 'ilike', 'FAA - Tools & Office Equipment'),
-    #         ('user_type_id.name', 'in', ('Fixed Assets', 'Current Assets'))
-    #     ], limit=1)
-    #     if tools:
-    #         tools.create_asset = 'draft'
-    #
-    #         depreciation_account_id = self.env['account.account'].search([
-    #             ('name', 'ilike', 'Acc. Depn. - Tools & Office Equipment')
-    #         ], limit=1)
-    #         asset_model = self.env['account.asset'].search([
-    #             ('name', 'ilike', 'Tools & Fustures 5 Years')
-    #         ], limit=1)
-    #         if asset_model:
-    #             asset_model.write({
-    #                 'asset_type': 'purchase',
-    #                 'display_account_asset_id': True,
-    #                 'account_depreciation_expense_id': expense_id.id,
-    #                 'state': 'model',
-    #                 'account_asset_id': tools.id,
-    #                 'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
-    #             })
-    #         else:
-    #             asset_model = self.env['account.asset'].create({
-    #                 'name': 'Tools & Fustures 5 Years',
-    #                 'method_number': 60,
-    #                 'method_period': '1',
-    #                 'prorata': True,
-    #                 'account_asset_id': tools.id,
-    #                 'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
-    #                 'account_depreciation_expense_id': expense_id.id,
-    #                 'journal_id': journal_id.id,
-    #                 'asset_type': 'purchase',
-    #                 'state': 'model',
-    #                 'display_account_asset_id': True,
-    #             })
-    #         tools.asset_model = asset_model.id
-    #
-    #     # FAA - Building
-    #     building = self.env['account.account'].search([
-    #         ('name', 'ilike', 'FAA - Building'),
-    #         ('user_type_id.name', 'in', ('Fixed Assets', 'Current Assets'))
-    #     ], limit=1)
-    #     if building:
-    #         building.create_asset = 'draft'
-    #
-    #         depreciation_account_id = self.env['account.account'].search([
-    #             ('name', 'ilike', 'Acc. Depn. - Building')
-    #         ], limit=1)
-    #         asset_model = self.env['account.asset'].search([
-    #             ('name', 'ilike', 'Building 15 Years')
-    #         ], limit=1)
-    #         if asset_model:
-    #             asset_model.write({
-    #                 'asset_type': 'purchase',
-    #                 'display_account_asset_id': True,
-    #                 'account_depreciation_expense_id': expense_id.id,
-    #                 'state': 'model',
-    #                 'account_asset_id': building.id,
-    #                 'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
-    #             })
-    #         else:
-    #             asset_model = self.env['account.asset'].create({
-    #                 'name': 'Building 15 Years',
-    #                 'method_number': 180,
-    #                 'method_period': '1',
-    #                 'prorata': True,
-    #                 'account_asset_id': building.id,
-    #                 'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
-    #                 'account_depreciation_expense_id': expense_id.id,
-    #                 'journal_id': journal_id.id,
-    #                 'asset_type': 'purchase',
-    #                 'state': 'model',
-    #                 'display_account_asset_id': True,
-    #             })
-    #         building.asset_model = asset_model.id
-    #
-    # def action_view_rules(self):
-    #     # Define the action to open the specified tree and form views
-    #     return {
-    #         'type': 'ir.actions.act_window',
-    #         'name': 'Assets',
-    #         'res_model': 'account.asset',
-    #         'view_mode': 'tree,form',  # Show both tree and form views
-    #         'views': [
-    #             (self.env.ref('account_asset.view_account_asset_model_purchase_tree').id, 'tree'),
-    #             (self.env.ref('account_asset.view_account_asset_form').id, 'form'),
-    #         ],
-    #         'target': 'current',
-    #         'context': self.env.context,
-    #         'domain': [('asset_type', '=', 'purchase'), ('state', '=', 'model')],  # Add a domain here if needed #
-    #     }
+    def action_create_far_rules(self):
+        asset = self.env['account.asset'].search([])
+        print([i.name for i in asset])
+        expense_id = self.env['account.account'].search([
+            ('name', 'ilike', 'Depreciation Costs'),
+            ('company_id', '=', self.env.company.id)
+        ], limit=1)
+        print(expense_id)
+        print(expense_id.name)
+
+        journal_id = self.env['account.journal'].search([
+            ('name', 'ilike', 'Miscellaneous Operations'),
+        ], limit=1)
+
+        # FAA - Leasehold Improvement
+        leasehold = self.env['account.account'].search([
+            ('name', 'ilike', 'FAA - Leasehold Improvement'),
+            ('user_type_id.name', 'in', ('Fixed Assets', 'Current Assets'))
+        ], limit=1)
+        if leasehold:
+            leasehold.create_asset = 'draft'
+
+            depreciation_account_id = self.env['account.account'].search([
+                ('name', 'ilike', 'Acc. Depn. - Leasehold Improvement')
+            ], limit=1)
+            asset_model = self.env['account.asset'].search([
+                ('name', 'ilike', 'Leasehold 10 years')
+            ], limit=1)
+            if asset_model:
+                asset_model.write({
+                    'asset_type': 'purchase',
+                    'display_account_asset_id': True,
+                    'account_depreciation_expense_id': expense_id.id,
+                    'state': 'model',
+                    'account_asset_id': leasehold.id,
+                    'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
+                })
+            else:
+                asset_model = self.env['account.asset'].create({
+                    'name': 'Leasehold 10 years',
+                    'method_number': 120,
+                    'method_period': '1',
+                    'prorata': True,
+                    'account_asset_id': leasehold.id,
+                    'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
+                    'account_depreciation_expense_id': expense_id.id,
+                    'journal_id': journal_id.id,
+                    'asset_type': 'purchase',
+                    'state': 'model',
+                    'display_account_asset_id': True,
+                })
+            leasehold.asset_model = asset_model.id
+
+        # FAA - Furniture & Fixtures
+        furniture_fixtures = self.env['account.account'].search([
+            ('name', 'ilike', 'FAA - Furniture & Fixtures'),
+            ('user_type_id.name', 'in', ('Fixed Assets', 'Current Assets'))
+        ], limit=1)
+        if furniture_fixtures:
+            furniture_fixtures.create_asset = 'draft'
+
+            depreciation_account_id = self.env['account.account'].search([
+                ('name', 'ilike', 'Acc. Depn. - Furniture & Fixtures')
+            ], limit=1)
+            asset_model = self.env['account.asset'].search([
+                ('name', 'ilike', 'Furniture & Fustures 5 Years')
+            ], limit=1)
+            if asset_model:
+                asset_model.write({
+                    'asset_type': 'purchase',
+                    'display_account_asset_id': True,
+                    'account_depreciation_expense_id': expense_id.id,
+                    'state': 'model',
+                    'account_asset_id': furniture_fixtures.id,
+                    'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
+                })
+            else:
+                asset_model = self.env['account.asset'].create({
+                    'name': 'Furniture & Fustures 5 Years',
+                    'method_number': 60,
+                    'method_period': '1',
+                    'prorata': True,
+                    'account_asset_id': furniture_fixtures.id,
+                    'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
+                    'account_depreciation_expense_id': expense_id.id,
+                    'journal_id': journal_id.id,
+                    'asset_type': 'purchase',
+                    'state': 'model',
+                    'display_account_asset_id': True,
+                })
+            furniture_fixtures.asset_model = asset_model.id
+
+        # FAA - Computer Hardware & Software
+        computer_hardware = self.env['account.account'].search([
+            ('name', 'ilike', 'FAA - Computer Hardware & Software'),
+            ('user_type_id.name', 'in', ('Fixed Assets', 'Current Assets'))
+        ], limit=1)
+        if computer_hardware:
+            computer_hardware.create_asset = 'draft'
+
+            depreciation_account_id = self.env['account.account'].search([
+                ('name', 'ilike', 'Acc. Depn. - Furniture & Fixtures')
+            ], limit=1)
+            asset_model = self.env['account.asset'].search([
+                ('name', 'ilike', 'Computer Hardware & Fustures 5 Years')
+            ], limit=1)
+            if asset_model:
+                asset_model.write({
+                    'asset_type': 'purchase',
+                    'display_account_asset_id': True,
+                    'account_depreciation_expense_id': expense_id.id,
+                    'state': 'model',
+                    'account_asset_id': computer_hardware.id,
+                    'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
+
+                })
+            else:
+                asset_model = self.env['account.asset'].create({
+                    'name': 'Computer Hardware & Fustures 5 Years',
+                    'method_number': 60,
+                    'method_period': '1',
+                    'prorata': True,
+                    'account_asset_id': computer_hardware.id,
+                    'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
+                    'account_depreciation_expense_id': expense_id.id,
+                    'journal_id': journal_id.id,
+                    'asset_type': 'purchase',
+                    'state': 'model',
+                    'display_account_asset_id': True,
+                })
+            computer_hardware.asset_model = asset_model.id
+
+        # FAA - Motor Vehicle
+        motor = self.env['account.account'].search([
+            ('name', 'ilike', 'FAA - Motor Vehicle'),
+            ('user_type_id.name', 'in', ('Fixed Assets', 'Current Assets'))
+        ], limit=1)
+        if motor:
+            motor.create_asset = 'draft'
+
+            depreciation_account_id = self.env['account.account'].search([
+                ('name', 'ilike', 'Acc. Depn. - Motor Vehicle')
+            ], limit=1)
+            asset_model = self.env['account.asset'].search([
+                ('name', 'ilike', 'Motor 10 years')
+            ], limit=1)
+            if asset_model:
+                asset_model.write({
+                    'asset_type': 'purchase',
+                    'display_account_asset_id': True,
+                    'account_depreciation_expense_id': expense_id.id,
+                    'state': 'model',
+                    'account_asset_id': motor.id,
+                    'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
+                })
+            else:
+                asset_model = self.env['account.asset'].create({
+                    'name': 'Motor 10 years',
+                    'method_number': 120,
+                    'method_period': '1',
+                    'prorata': True,
+                    'account_asset_id': motor.id,
+                    'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
+                    'account_depreciation_expense_id': expense_id.id,
+                    'journal_id': journal_id.id,
+                    'asset_type': 'purchase',
+                    'state': 'model',
+                    'display_account_asset_id': True,
+                })
+            motor.asset_model = asset_model.id
+
+        # FAA - Equipment & Machineries
+        equipment = self.env['account.account'].search([
+            ('name', 'ilike', 'FAA - Equipment & Machineries'),
+            ('user_type_id.name', 'in', ('Fixed Assets', 'Current Assets'))
+        ], limit=1)
+        if equipment:
+            equipment.create_asset = 'draft'
+
+            depreciation_account_id = self.env['account.account'].search([
+                ('name', 'ilike', 'Acc. Depn. - Equipment & Machineries')
+            ], limit=1)
+            asset_model = self.env['account.asset'].search([
+                ('name', 'ilike', 'Equipment & Fustures 5 Years')
+            ], limit=1)
+            if asset_model:
+                asset_model.write({
+                    'asset_type': 'purchase',
+                    'display_account_asset_id': True,
+                    'account_depreciation_expense_id': expense_id.id,
+                    'state': 'model',
+                    'account_asset_id': equipment.id,
+                    'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
+                })
+            else:
+                asset_model = self.env['account.asset'].create({
+                    'name': 'Equipment & Fustures 5 Years',
+                    'method_number': 60,
+                    'method_period': '1',
+                    'prorata': True,
+                    'account_asset_id': equipment.id,
+                    'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
+                    'account_depreciation_expense_id': expense_id.id,
+                    'journal_id': journal_id.id,
+                    'asset_type': 'purchase',
+                    'state': 'model',
+                    'display_account_asset_id': True,
+                })
+            equipment.asset_model = asset_model.id
+
+        # FAA - Tools & Office Equipment
+        tools = self.env['account.account'].search([
+            ('name', 'ilike', 'FAA - Tools & Office Equipment'),
+            ('user_type_id.name', 'in', ('Fixed Assets', 'Current Assets'))
+        ], limit=1)
+        if tools:
+            tools.create_asset = 'draft'
+
+            depreciation_account_id = self.env['account.account'].search([
+                ('name', 'ilike', 'Acc. Depn. - Tools & Office Equipment')
+            ], limit=1)
+            asset_model = self.env['account.asset'].search([
+                ('name', 'ilike', 'Tools & Fustures 5 Years')
+            ], limit=1)
+            if asset_model:
+                asset_model.write({
+                    'asset_type': 'purchase',
+                    'display_account_asset_id': True,
+                    'account_depreciation_expense_id': expense_id.id,
+                    'state': 'model',
+                    'account_asset_id': tools.id,
+                    'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
+                })
+            else:
+                asset_model = self.env['account.asset'].create({
+                    'name': 'Tools & Fustures 5 Years',
+                    'method_number': 60,
+                    'method_period': '1',
+                    'prorata': True,
+                    'account_asset_id': tools.id,
+                    'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
+                    'account_depreciation_expense_id': expense_id.id,
+                    'journal_id': journal_id.id,
+                    'asset_type': 'purchase',
+                    'state': 'model',
+                    'display_account_asset_id': True,
+                })
+            tools.asset_model = asset_model.id
+
+        # FAA - Building
+        building = self.env['account.account'].search([
+            ('name', 'ilike', 'FAA - Building'),
+            ('user_type_id.name', 'in', ('Fixed Assets', 'Current Assets'))
+        ], limit=1)
+        if building:
+            building.create_asset = 'draft'
+
+            depreciation_account_id = self.env['account.account'].search([
+                ('name', 'ilike', 'Acc. Depn. - Building')
+            ], limit=1)
+            asset_model = self.env['account.asset'].search([
+                ('name', 'ilike', 'Building 15 Years')
+            ], limit=1)
+            if asset_model:
+                asset_model.write({
+                    'asset_type': 'purchase',
+                    'display_account_asset_id': True,
+                    'account_depreciation_expense_id': expense_id.id,
+                    'state': 'model',
+                    'account_asset_id': building.id,
+                    'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
+                })
+            else:
+                asset_model = self.env['account.asset'].create({
+                    'name': 'Building 15 Years',
+                    'method_number': 180,
+                    'method_period': '1',
+                    'prorata': True,
+                    'account_asset_id': building.id,
+                    'account_depreciation_id': depreciation_account_id.id if depreciation_account_id else False,
+                    'account_depreciation_expense_id': expense_id.id,
+                    'journal_id': journal_id.id,
+                    'asset_type': 'purchase',
+                    'state': 'model',
+                    'display_account_asset_id': True,
+                })
+            building.asset_model = asset_model.id
+
+    def action_view_rules(self):
+        # Define the action to open the specified tree and form views
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Assets',
+            'res_model': 'account.asset',
+            'view_mode': 'tree,form',  # Show both tree and form views
+            'views': [
+                (self.env.ref('account_asset.view_account_asset_model_purchase_tree').id, 'tree'),
+                (self.env.ref('account_asset.view_account_asset_form').id, 'form'),
+            ],
+            'target': 'current',
+            'context': self.env.context,
+            'domain': [('asset_type', '=', 'purchase'), ('state', '=', 'model')],  # Add a domain here if needed #
+        }
 
     def create_category(self):
         parent_category_id = self.env['product.category'].search([

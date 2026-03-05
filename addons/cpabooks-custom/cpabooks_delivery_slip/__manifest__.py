@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    "name": "xxCPAbooks Delivery Slip",
+    "name": "cpabooks delivery slip",
     "summary": " Delivery Slip Report Customization ",
     "description": """ Delivery Slip Report Customization """,
     "author": "Dipankar Sarkar",

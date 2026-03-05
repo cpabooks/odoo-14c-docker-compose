@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    "name": "Professional Report Templates V1",
+    "name": "professional report remplates v1c",
     "license": "OPL-1",
     "support": "support@optima.co.ke",
     "summary": """
@@ -53,7 +53,7 @@
         "sale",
         "product",
         # "account_reports",
-        # "hr_expense",
+        "hr_expense",
         # "report_pdf_options",
         # "cpabooks_payment_voucher",
         # "cpabooks_sequences",

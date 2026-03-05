@@ -14,8 +14,6 @@
                 <field name="name" position="after">
                     <field name="system_admin" invisible="1"/>
                 </field>
-
-
         </field>
     </record>
 </odoo>

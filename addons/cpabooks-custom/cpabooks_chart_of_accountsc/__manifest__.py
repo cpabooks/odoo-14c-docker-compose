@@ -27,7 +27,14 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'account', 'cpabooks_accounting_automation', 'sh_pdc', 'cpabooks_sequences'],
+    'depends': [
+        'base',
+        'account',
+        'cpabooks_accounting_automation',
+        'sh_pdc',
+        'cpabooks_sequences',
+        'base_accounting_kit',
+    ],
     # 'account_asset',
 
     # always loaded

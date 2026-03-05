@@ -28,7 +28,7 @@
     'company': 'Cybrosys Techno Solutions',
     'maintainer': 'Cybrosys Techno Solutions',
     'website': "https://www.cybrosys.com",
-    'depends': ['base_setup', 'sale_management', 'project', 'hr_timesheet', 'mail', 'cpabooks_project_extend', 'bi_subtask'],
+    'depends': ['base_setup', 'sale_management', 'project', 'hr_timesheet', 'mail', 'cpabooks_project_extendc', 'bi_subtask'],
     'data': [
         'data/due_date_notification.xml',
         'data/activity_sequence.xml',
@@ -72,4 +72,3 @@
     'auto_install': False,
     'application': False,
 }
-#############################################################################

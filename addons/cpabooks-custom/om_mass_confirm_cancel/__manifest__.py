@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
 
 {
-    'name': 'xxx_Sale,Purchase Mass Confirm and Cancel',
+    'name': 'Sale,Purchase Mass Confirm and Cancel',
     'version': '14.0.1.0.0',
     'category': 'Generic Modules/Others',
     'description': 'Allow To Cancel and Confirm the Sales and Purchase From the Tree View',

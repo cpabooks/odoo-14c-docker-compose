@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['project', 'base','sale','account','sale_project','hr_timesheet','planning','project_forecast', 'crm'],#,'sale_timesheet'
+    'depends': ['project', 'base','sale','account','sale_project','hr_timesheet','planning','project_forecast', 'crm', 'stock', 'industry_fsm'],#,'sale_timesheet'
 # cpabooks_switchgear_custom #'cpabooks_delivery_slip',
 
     # always loaded
